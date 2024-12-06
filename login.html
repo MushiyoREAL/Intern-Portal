@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        // document.getElementById('loginForm').addEventListener('submit', async (event) => {
+        //     event.preventDefault(); // Prevent form submission
+        //     const email = document.getElementById('email').value;
+        //     const password = document.getElementById('password').value;
+
+        //     const response = await fetch('/login', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ email, password })
+        //     });
+
+        //     const result = await response.json();
+        //     if (response.ok) {
+        //         alert(result.message);
+        //         // Redirect to admin dashboard or another page
+        //         window.location.href = '/admin'; // Redirect to admin dashboard
+        //     } else {
+        //         alert(result.error);
+        //     }
+        // });
+        fetch('/main')
+    .then(response => {
+        if (response.status === 403) {
+            return response.json(); // Get the error message
+        }
+        return response.text(); // Get the HTML for the main page
+    })
+    .then(data => {
+        if (data.message) {
+            // Display the approval message to the user
+            document.body.innerHTML = `<h1>${data.message}</h1>`;
+        } else {
+            // Load the main site content
+            document.body.innerHTML = data; // Or append it as necessary
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    </script>
+</body>
+</html>

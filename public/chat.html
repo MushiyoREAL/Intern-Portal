@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CometChat</title>
+
+    <!-- Include CometChat SDK -->
+    <script type="text/javascript" src="https://unpkg.com/@cometchat-pro/chat@latest/CometChat.js"></script>
+
+    <!-- Add some styles to make the chat interface look decent -->
+    <style>
+        #chat-box {
+            display: none;
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: white;
+        }
+
+        #message-list {
+            list-style-type: none;
+            padding: 0;
+            height: 400px;
+            overflow-y: scroll;
+        }
+
+        .message {
+            margin: 5px 0;
+        }
+
+        .message .sender {
+            font-weight: bold;
+        }
+
+        #message-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        #send-button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        #send-button:disabled {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Button to start the chat -->
+    <button id="start-chat">Start Chat</button>
+
+    <!-- Chat Box UI -->
+    <div id="chat-box">
+        <ul id="message-list">
+            <!-- Messages will be appended here -->
+        </ul>
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="send-button" disabled>Send</button>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>
